@@ -15,4 +15,9 @@ describe('UsersService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  it('createFullName', () => {
+    const firstName = 'John';
+    const lastName = 'Doe';
+    expect(service.createFullName({ firstName, lastName })).toBe('JohnDoe');
+  });
 });
