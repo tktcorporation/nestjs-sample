@@ -26,4 +26,5 @@ Access `http://{DockerIP}:3000`
 - ApiDoc: `http://{DockerIP}:3000/api/`
 
 ## Details
-See https://qiita.com/tktcorporation/items/ba2306ae46d99cf37035
+- Create api and doc: See https://qiita.com/tktcorporation/items/ba2306ae46d99cf37035
+- Create some api: See https://qiita.com/tktcorporation/items/e7fe09a41a55b64ed4d2
