@@ -17,7 +17,7 @@ $ docker-compose build
 
 ### Serve NestJS
 
-```
+```bash
 $ docker-compose run --rm --service-ports app "yarn start"
 ```
 
