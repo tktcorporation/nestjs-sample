@@ -21,4 +21,17 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
+  it('/users (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/users?first_name=John&last_name=Doe')
+      .expect(200)
+      .expect(JSON.stringify({ full_name: 'JohnDoe' }));
+  });
+  it('/users (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/users')
+      .send({ first_name: 'John', last_name: 'Doe' })
+      .expect(201)
+      .expect(JSON.stringify({ method: 'post', full_name: 'JohnDoe' }));
+  });
 });
