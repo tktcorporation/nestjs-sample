@@ -33,7 +33,6 @@ describe('AppController (e2e)', () => {
     const response = await request(app.getHttpServer())
       .get('/users?first_name=John&last_name=Doe')
       .expect(200);
-    // .expect(JSON.stringify({ full_name: 'JohnDoe' }));
     const body = response.body as {
       users: UsersDao.Entity[];
     };
