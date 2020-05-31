@@ -5,30 +5,24 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  // GET の場合は QueryStrings からパラメータを取得
-  @Get()
-  getFullName(
-    @Query() createFullNameDto: { first_name?: string; last_name?: string },
+  @Post()
+  async createUser(
+    @Body() createFullNameDto: { first_name?: string; last_name?: string },
   ) {
+    await this.usersService.createUser({
+      firstName: createFullNameDto.first_name,
+      lastName: createFullNameDto.last_name,
+    });
     return {
-      full_name: this.usersService.createFullName({
-        firstName: createFullNameDto.first_name,
-        lastName: createFullNameDto.last_name,
-      }),
+      method: 'post',
+      message: 'created',
     };
   }
 
-  // POST の場合は Body からパラメータを取得
-  @Post()
-  getFullNameAndMethod(
-    @Body() createFullNameDto: { first_name?: string; last_name?: string },
-  ) {
+  @Get()
+  async getAllUsers() {
     return {
-      method: 'post',
-      full_name: this.usersService.createFullName({
-        firstName: createFullNameDto.first_name,
-        lastName: createFullNameDto.last_name,
-      }),
+      users: await this.usersService.getAllUser(),
     };
   }
 }

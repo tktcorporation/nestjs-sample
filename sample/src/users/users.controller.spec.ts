@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
-import { UsersModule } from './users.module';
 import { UsersService } from './users.service';
 
 describe('Users Controller', () => {
@@ -19,23 +18,20 @@ describe('Users Controller', () => {
     expect(controller).toBeDefined();
   });
 
-  it('getFullName', () => {
+  it('create user', async () => {
     const first = 'John';
     const last = 'Doe';
-    const result = controller.getFullName({
+    const result = await controller.createUser({
       first_name: first,
       last_name: last,
     });
-    expect(result.full_name).toBe(`${first}${last}`);
+    expect(result.message).toBe(`created`);
   });
-  it('getFullName', () => {
-    const first = 'John';
-    const last = 'Doe';
-    const result = controller.getFullNameAndMethod({
-      first_name: first,
-      last_name: last,
-    });
-    expect(result.full_name).toBe(`${first}${last}`);
-    expect(result.method).toBe('post');
+
+  it('get all users', async () => {
+    const result = await controller.getAllUsers();
+    expect(result.users.length).toBeGreaterThan(0);
+    expect(result.users[0].id).toBeGreaterThan(0);
+    expect(result.users[0].name.length).toBeGreaterThan(0);
   });
 });
