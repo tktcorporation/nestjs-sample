@@ -15,9 +15,25 @@ describe('UsersService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
   it('createFullName', () => {
     const firstName = 'John';
     const lastName = 'Doe';
     expect(service.createFullName({ firstName, lastName })).toBe('JohnDoe');
+  });
+
+  it('createUser', async () => {
+    const firstName = 'John';
+    const lastName = 'Doe';
+    const result = await service.createUser({ firstName, lastName });
+    expect(result).toBeDefined();
+  });
+  it('getAllUser', async () => {
+    const firstName = 'John';
+    const lastName = 'Doe';
+    const users = await service.getAllUser();
+    expect(users).toBeDefined();
+    expect(users[0].id).toBeGreaterThan(0);
+    expect(users[0].name.length).toBeGreaterThan(0);
   });
 });
