@@ -14,6 +14,7 @@ describe('UsersDao', () => {
 
   it('create', async () => {
     const result = await dao.create('JohnDoe');
+    expect(result).toStrictEqual([]);
   });
   it('get', async () => {
     const users = await dao.findAll();
